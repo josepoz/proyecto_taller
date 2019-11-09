@@ -10,11 +10,13 @@
       <div class="table-responsive">
         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
             <div class="row">
+                {% if user.is_authenticated %}
                 <div class="col-sm-12 col-md-6">
                     <a href="{% url 'trabajo_new' %}" class="btn btn-primary btn-icon-split">
                             <span class="text">Agregar Trabajo +</span>
                     </a>
                 </div>
+                {% endif %}
             
             </div>
             <div class="row"><div class="col-sm-12">
@@ -22,7 +24,7 @@
           <thead>
             <tr>
                 <th rowspan="1" colspan="1">AUTO-PLACAS</th>
-                <th rowspan="1" colspan="1">MECANICO RESPONSABLE</th>
+                <th rowspan="1" colspan="1">COSTO DEL TRABAJO</th>
                 <th rowspan="1" colspan="1">TRABAJO</th>
                 <th rowspan="1" colspan="1">ESTADO</th>
                 <th rowspan="1" colspan="1">FECHA DE INGRESO</th>
@@ -32,7 +34,7 @@
           <tfoot>
             <tr>
                 <th rowspan="1" colspan="1">AUTO-PLACAS</th>
-                <th rowspan="1" colspan="1">MECANICO RESPONSABLE</th>
+                <th rowspan="1" colspan="1">COSTO DEL TRABAJO</th>
                 <th rowspan="1" colspan="1">TRABAJO</th>
                 <th rowspan="1" colspan="1">ESTADO</th>
                 <th rowspan="1" colspan="1">FECHA DE INGRESO</th>
@@ -45,11 +47,12 @@
 
           <tr role="row" class="odd">
               <td class="sorting_1">{{ trabajo.auto_placas }}</td>
-              <td>{{ trabajo.mecanicos}}</td>
+              <td>Q. {{ trabajo.costo_total}}</td>
               <td>{{ trabajo.trabajo_descripcion }}</td>  
               <td>{{ trabajo.estado }}</td>   
               <td>{{ trabajo.fecha }}</td>        
               <td>
+                  {% if user.is_authenticated %}
                     <a href="{% url 'detalle_trabajo' pk=trabajo.pk %}" class="btn btn-success btn-icon-split">
                             <span class="text">Ver</span>
                     </a>
@@ -59,7 +62,8 @@
                     
                     <a href="{% url 'trabajo_delete' pk=trabajo.pk %}" class="btn btn-success btn-icon-split">
                     <span class="text">Borrar</span>
-              </a>
+                    </a>
+                    {% endif %}
               </td>
               {% endfor %}
               </tbody>
