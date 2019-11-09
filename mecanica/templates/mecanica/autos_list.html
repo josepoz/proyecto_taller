@@ -1,0 +1,69 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Autos Registrados</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <a href="{% url 'auto_new' %}" class="btn btn-primary btn-icon-split">
+                            <span class="text">Agregar Auto +</span>
+                    </a>
+                </div>
+            
+            </div>
+            <div class="row"><div class="col-sm-12">
+                <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+                <th rowspan="1" colspan="1">PROPIETARIO</th>
+                <th rowspan="1" colspan="1">PLACAS</th>
+                <th rowspan="1" colspan="1">MODELO</th>
+                <th rowspan="1" colspan="1">FECHA DE REGISTRO</th>
+                <th rowspan="1" colspan="1">ACCIONES</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">PROPIETARIO</th>
+                <th rowspan="1" colspan="1">PLACAS</th>
+                <th rowspan="1" colspan="1">MODELO</th>
+                <th rowspan="1" colspan="1">FECHA DE REGISTRO</th>
+                <th rowspan="1" colspan="1">ACCIONES</th>
+            </tr>
+          </tfoot>
+          <tbody>
+        
+                {% for auto in autos %}
+
+          <tr role="row" class="odd">
+              <td class="sorting_1">{{ auto.nombre_propietario }}</td>
+              <td>{{ auto.placas }}</td>
+              <td>{{ auto.modelo }}</td>
+              <td>{{ auto.fecha_registro }}</td>              
+              <td>
+                    <a href="{% url 'auto_edit' pk=auto.pk %}" class="btn btn-success btn-icon-split">
+                            <span class="text">Actualizar</span>
+                    </a>
+
+                    <a href="{% url 'detalle_auto' pk=auto.pk %}" class="btn btn-success btn-icon-split" >
+                     <span class="text">Ver</span>
+              </a>
+              </td>
+              {% endfor %}
+              </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}

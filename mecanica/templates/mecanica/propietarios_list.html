@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Propietarios</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <p>Espacio para boton de Agregar</p>
+
+                    <a href="#" class="btn btn-primary btn-icon-split">
+                            <span class="text">Agregar Propietario +</span>
+                    </a>
+                </div>
+            
+            </div>
+            <div class="row"><div class="col-sm-12">
+                <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+                <th rowspan="1" colspan="1">PROPIETARIOS</th>
+                <th rowspan="1" colspan="1">DPI</th>
+                <th rowspan="1" colspan="1">TELEFONO</th>
+                <th rowspan="1" colspan="1">FECHA DE REGISTRO</th>
+                <th rowspan="1" colspan="1">ACCIONES</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">PROPIETARIOS</th>
+                <th rowspan="1" colspan="1">DPI</th>
+                <th rowspan="1" colspan="1">TELEFONO</th>
+                <th rowspan="1" colspan="1">FECHA DE REGISTRO</th>
+                <th rowspan="1" colspan="1">ACCIONES</th>
+            </tr>
+          </tfoot>
+          <tbody>
+        
+                {% for propietario in propietarios %}
+
+          <tr role="row" class="odd">
+              <td class="sorting_1">{{ propietario.nombre1 }} {{ propietario.nombre2 }} {{ propietario.apellido_paterno }} {{ propietario.apellido_materno }}</td>
+              <td>{{ propietario.dpi }}</td>
+              <td>{{ propietario.telefono }}</td>
+              <td>{{ propietario.fecha_registro }}</td>              
+              <td>
+                    <a href="#" class="btn btn-success btn-icon-split">
+                            <span class="text">Actualizar</span>
+                    </a>
+              </td>
+              {% endfor %}
+              </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}

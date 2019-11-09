@@ -1,0 +1,75 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Trabajos</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <a href="{% url 'trabajo_new' %}" class="btn btn-primary btn-icon-split">
+                            <span class="text">Agregar Trabajo +</span>
+                    </a>
+                </div>
+            
+            </div>
+            <div class="row"><div class="col-sm-12">
+                <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+                <th rowspan="1" colspan="1">AUTO-PLACAS</th>
+                <th rowspan="1" colspan="1">MECANICO RESPONSABLE</th>
+                <th rowspan="1" colspan="1">TRABAJO</th>
+                <th rowspan="1" colspan="1">ESTADO</th>
+                <th rowspan="1" colspan="1">FECHA DE INGRESO</th>
+                <th rowspan="1" colspan="1">ACCIONES</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">AUTO-PLACAS</th>
+                <th rowspan="1" colspan="1">MECANICO RESPONSABLE</th>
+                <th rowspan="1" colspan="1">TRABAJO</th>
+                <th rowspan="1" colspan="1">ESTADO</th>
+                <th rowspan="1" colspan="1">FECHA DE INGRESO</th>
+                <th rowspan="1" colspan="1">ACCIONES</th>
+            </tr>
+          </tfoot>
+          <tbody>
+        
+                {% for trabajo in trabajos %}
+
+          <tr role="row" class="odd">
+              <td class="sorting_1">{{ trabajo.auto_placas }}</td>
+              <td>{{ trabajo.mecanicos}}</td>
+              <td>{{ trabajo.trabajo_descripcion }}</td>  
+              <td>{{ trabajo.estado }}</td>   
+              <td>{{ trabajo.fecha }}</td>        
+              <td>
+                    <a href="{% url 'detalle_trabajo' pk=trabajo.pk %}" class="btn btn-success btn-icon-split">
+                            <span class="text">Ver</span>
+                    </a>
+
+                    <a href="{% url 'trabajo_edit' pk=trabajo.pk %}" class="btn btn-success btn-icon-split">
+                      <span class="text">Actualizar</span>
+                    
+                    <a href="{% url 'trabajo_delete' pk=trabajo.pk %}" class="btn btn-success btn-icon-split">
+                    <span class="text">Borrar</span>
+              </a>
+              </td>
+              {% endfor %}
+              </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
